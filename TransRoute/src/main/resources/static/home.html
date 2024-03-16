@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<script src="https://kit.fontawesome.com/7213a83b30.js" crossorigin="anonymous"></script>
+
+<!-- Estilos -->
+<link rel="stylesheet" href="styles/home.css">
+
+<title>Formulario Login y Registro de Usuarios</title>
+</head>
+<body>
+	<header>
+		<h2 class="logo">TrunsRoute</h2>
+		<nav class="navegation">
+			<a href="#">Inicio</a> <a href="#">Información</a> <a href="#">Servicios</a>
+			<a href="#">Contactos</a>
+
+			<button class="btn">Iniciar Sesión</button>
+		</nav>
+
+	</header>
+	<div class="fondo">
+		<span class="icono-cerrar"><i class="fa-solid fa-xmark"></i></span>
+		<div class="contenedor-form login">
+			<h2>Iniciar Sesión</h2>
+			<form action="#">
+				<div class="contenedor-input">
+					<span class="icono"><i class="fa-solid fa-envelope"></i></span> 
+					<input type="email" required> <label for="#">Email</label>
+				</div>
+				<div class="contenedor-input">
+					<span class="icono"><i class="fa-solid fa-lock"></i></span> 
+					<input type="password" required> <label for="#">Contraseña</label>
+				</div>
+				<div class="recordar">
+					<label for="#"><input type="checkbox">Recordar Sesión</label> <a href="#">¿Olvidé la contraseña?</a>
+				</div>
+				<button type="submit" class="btn">Iniciar Sesión</button>
+				<div class="registrar">
+					<p>
+						¿No tienes cuenta? <a href="#" class="registrar-link">Registrarse</a>
+					</p>
+				</div>
+			</form>
+		</div>
+		<div class="contenedor-form registro">
+			<h2>Registrar</h2>
+			<form action="#">
+				<div class="contenedor-input">
+					<span class="icono"><i class="fa-solid fa-user"></i></span> 
+					<input type="text" required> <label for="#">Nombre de Usuario</label>
+				</div>
+				<div class="contenedor-input">
+					<span class="icono"><i class="fa-solid fa-envelope"></i></span> 
+					<input type="email" required> <label for="#">Email</label>
+				</div>
+				<div class="contenedor-input">
+					<span class="icono"><i class="fa-solid fa-lock"></i></span> 
+					<input type="password" required> <label for="#">Contraseña</label>
+				</div>
+				<div class="contenedor-input">
+					<span class="icono"><i class="fa-solid fa-lock"></i></span> 
+					<input type="password" required> <label for="#">Confirmar Contraseña</label>
+				</div>
+				<div class="recordar">
+					<label for="#"><input type="checkbox">Acepto los </label> <a href="#">Términos y Condiciones</a>
+				</div>
+				<button type="submit" class="btn">Iniciar Sesión</button>
+				<div class="registrar">
+					<p>
+						¿Tienes cuenta? <a href="#" class="login-link">Iniciar Sesión</a>
+					</p>
+				</div>
+			</form>
+		</div>
+	</div>
+	<script  src="./scripts/home.js" type="text/javascript"></script>
+</body>
+</html>
