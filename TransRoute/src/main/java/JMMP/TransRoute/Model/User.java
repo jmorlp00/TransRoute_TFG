@@ -5,12 +5,22 @@ package JMMP.TransRoute.Model;
 import org.springframework.data.annotation.Id;
 
 
+
 public class User {
 	
 	@Id
 	private String Id;
 	
 	private String name;
+	
+	private String surname;
+
+
+	private int age;
+	
+	private String role;
+	
+	private String email;
 	
 	public String getId() {
 		return Id;
@@ -43,9 +53,21 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
+	public String getSurname() {
+		return surname;
+	}
 
-	private int age;
-	
-	private String role;
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 
 }

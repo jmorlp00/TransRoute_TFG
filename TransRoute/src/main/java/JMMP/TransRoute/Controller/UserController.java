@@ -20,14 +20,14 @@ public class UserController {
 	@Autowired
 	UserService userService;
 
-	@GetMapping("/users/{name}")
+	@GetMapping("/api/users/{name}")
 	public List<User> getUserByName(@PathVariable String name) {
 		List usersList = userService.getUserByName(name);
 
 		return usersList;
 	}
 
-	@PostMapping("/users/save")
+	@PostMapping("/api/users/save")
 	public User addUser(@RequestBody User user) {
 		return userService.addUser(user);
 	}
