@@ -13,6 +13,9 @@ public class Transportista {
 	@DBRef
 	private Gerente gerenteId;
 	
+	@DBRef
+	private Sucursal sucursalId;
+	
 	private String matricula;
 	
 	private double mma;
@@ -75,6 +78,14 @@ public class Transportista {
 
 	public void setLongitud(double longitud) {
 		this.longitud = longitud;
+	}
+
+	public Sucursal getSucursalId() {
+		return sucursalId;
+	}
+
+	public void setSucursalId(Sucursal sucursalId) {
+		this.sucursalId = sucursalId;
 	}
 	
 
