@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import JMMP.TransRoute.Model.Gerente;
 import JMMP.TransRoute.Model.User;
 import JMMP.TransRoute.Repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -48,5 +49,23 @@ public class UserService {
 		User user2 = userRepository.insert(user);
 		
 		return user2;
+	}
+	
+	public List<User> getAll(){
+		List<User> userList = userRepository.findAll();
+        if (CollectionUtils.isEmpty(userList)) {
+            
+            return new ArrayList<User>();
+        }
+        
+        return userList;
+	}
+	
+	public Boolean existsByEmail(String email) {
+		List<User> userList = userRepository.findByEmail(email);
+		if(CollectionUtils.isEmpty(userList)) {
+			return false;
+		}
+		return true;
 	}
 }

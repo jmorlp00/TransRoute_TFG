@@ -3,12 +3,11 @@ package JMMP.TransRoute.Model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
-public class Transportista {
+public class Transportista extends User{
 	@Id
 	private String Id;
 	
-	@DBRef
-	private User userId;
+
 	
 	@DBRef
 	private Gerente gerenteId;
@@ -32,13 +31,6 @@ public class Transportista {
 		Id = id;
 	}
 
-	public User getUserId() {
-		return userId;
-	}
-
-	public void setUserId(User userId) {
-		this.userId = userId;
-	}
 
 	public Gerente getGerenteId() {
 		return gerenteId;
