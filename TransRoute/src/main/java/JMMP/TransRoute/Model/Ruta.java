@@ -13,6 +13,8 @@ public class Ruta {
 	private double mma;
 	
 	private double longitud;
+	
+    private Coordenada[] coordenadas;
 
 	public String getId() {
 		return Id;
@@ -54,5 +56,33 @@ public class Ruta {
 		this.longitud = longitud;
 	}
 	
+    public Coordenada[] getCoordenadas() {
+        return coordenadas;
+    }
 
+    public void setCoordenadas(Coordenada[] coordenadas) {
+        this.coordenadas = coordenadas;
+    }
+    
+	// Clase interna Coordenada
+    public static class Coordenada {
+        private double latitud;
+        private double longitud;
+
+        public double getLatitud() {
+            return latitud;
+        }
+
+        public void setLatitud(double latitud) {
+            this.latitud = latitud;
+        }
+
+        public double getLongitud() {
+            return longitud;
+        }
+
+        public void setLongitud(double longitud) {
+            this.longitud = longitud;
+        }
+    }
 }

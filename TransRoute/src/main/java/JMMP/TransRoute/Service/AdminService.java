@@ -61,6 +61,18 @@ public class AdminService {
 		}
 		return true;
 	}
+	public void deleteAdminById(String userId) {
+		adminRespository.deleteById(userId);
+	}
 	
-
+	public Admin updateAdmin(Admin admin) {
+		return adminRespository.save(admin);
+	}
+	public Boolean existsById(String id) {
+		Optional<Admin> optionalUser = adminRespository.findById(id);
+		if(optionalUser == null || optionalUser.get() == null) {
+			return false;
+		}
+		return true;
+	}
 }

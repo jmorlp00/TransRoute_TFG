@@ -7,7 +7,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 
+import JMMP.TransRoute.Model.Admin;
 import JMMP.TransRoute.Model.Gerente;
+import JMMP.TransRoute.Model.User;
 import JMMP.TransRoute.Repository.GerenteRepository;
 
 public class GerenteService {
@@ -50,5 +52,18 @@ public class GerenteService {
 		}
 		return true;
 	}
-
+	public void deleteGerenteById(String userId) {
+		gerenteRepository.deleteById(userId);
+	}
+	
+	public Gerente updateGerente(Gerente gerente) {
+		return gerenteRepository.save(gerente);
+	}
+	public Boolean existsById(String id) {
+		Optional<Gerente> optionalUser = gerenteRepository.findById(id);
+		if(optionalUser == null || optionalUser.get() == null) {
+			return false;
+		}
+		return true;
+	}
 }

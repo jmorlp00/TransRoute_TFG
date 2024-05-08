@@ -68,4 +68,20 @@ public class UserService {
 		}
 		return true;
 	}
+	
+	public void deleteUserById(String userId) {
+		userRepository.deleteById(userId);
+	}
+	
+	public User updateUser(User user) {
+		return userRepository.save(user);
+	}
+	
+	public Boolean existsById(String id) {
+		Optional<User> optionalUser = userRepository.findById(id);
+		if(optionalUser == null || optionalUser.get() == null) {
+			return false;
+		}
+		return true;
+	}
 }
