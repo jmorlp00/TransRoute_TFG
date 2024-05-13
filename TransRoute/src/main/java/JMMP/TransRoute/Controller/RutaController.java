@@ -10,10 +10,16 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import JMMP.TransRoute.Model.Ruta;
 import JMMP.TransRoute.Service.RutaService;
+import lombok.extern.slf4j.Slf4j;
 
+@RestController
+@Slf4j
+@RequestMapping("/api/ruta")
 public class RutaController {
     @Autowired
     private RutaService rutaService;
@@ -31,7 +37,7 @@ public class RutaController {
     @PostMapping("/add")
     public Ruta addRuta(@RequestBody Ruta ruta) {
         if (ruta.getCoordenadas() == null || ruta.getCoordenadas().length < 2) {
-            throw new IllegalArgumentException("Debe proporcionar al menos dos coordenadas para añadir una ruta");
+        	throw new Error("Debe proporcionar al menos dos coordenadas.");
         }
         return rutaService.addRuta(ruta);
     }

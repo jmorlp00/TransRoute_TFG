@@ -1,9 +1,17 @@
 package JMMP.TransRoute.Controller;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.catalina.connector.Response;
+import org.bson.json.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -19,6 +27,9 @@ import JMMP.TransRoute.Service.GerenteService;
 import JMMP.TransRoute.Service.SucursalService;
 import JMMP.TransRoute.Service.TransportistaService;
 import JMMP.TransRoute.Service.UserService;
+import JMMP.TransRoute.payload.request.LoginRequest;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import JMMP.TransRoute.Model.Admin;
 import JMMP.TransRoute.Model.Gerente;
 import JMMP.TransRoute.Model.Transportista;
@@ -40,6 +51,13 @@ public class UserController {
 	private TransportistaService transportistaService;
 	@Autowired
 	private SucursalService sucursalService;
+	
+	@Value("${jwtSecret}")
+	private String secret;
+	
+	@Value("${jwtExpiration}")
+	private long expiration;
+
 
 	@GetMapping("/")
 	public List<User> getAllUsers() {
@@ -303,4 +321,33 @@ public class UserController {
 			userService.deleteUserById(userId);
 		}
 	}
+	
+	@PostMapping("/login")
+	public ResponseEntity<User> login(@RequestBody LoginRequest request) {
+
+		
+		User user2 = userService.getUserByName(request.getUsername()).get(0);
+		
+		if(user2 == null) {
+			return ResponseEntity
+					.status(HttpStatus.UNAUTHORIZED)
+					.body(null);
+		}else if(user2.getPassword().equals(request.getPassword())){
+			
+			
+			
+			return ResponseEntity
+					.status(HttpStatus.CREATED)
+					.body(user2);
+			
+		}
+		
+		return ResponseEntity
+				.status(HttpStatus.UNAUTHORIZED)
+				.build();
+
+	}
+	
 }
+
+

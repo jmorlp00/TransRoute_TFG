@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import JMMP.TransRoute.Model.Admin;
@@ -12,7 +13,9 @@ import JMMP.TransRoute.Model.Gerente;
 import JMMP.TransRoute.Model.Transportista;
 import JMMP.TransRoute.Model.User;
 import JMMP.TransRoute.Repository.TransportistaRepository;
-
+import lombok.extern.slf4j.Slf4j;
+@Service
+@Slf4j
 public class TransportistaService {
 	@Autowired
 	TransportistaRepository	transportistaRepository;

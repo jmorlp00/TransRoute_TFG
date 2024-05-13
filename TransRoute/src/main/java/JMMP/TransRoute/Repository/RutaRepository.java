@@ -10,5 +10,5 @@ import JMMP.TransRoute.Model.Ruta;
 public interface RutaRepository  extends MongoRepository<Ruta, String>{
 	Ruta findRutaById(String Id);
 	List<Ruta> findRutaByNombre(String nombre);
-	List<Ruta> findRutaByRestrictions(double altura, double mma, double longitud);
+
 }

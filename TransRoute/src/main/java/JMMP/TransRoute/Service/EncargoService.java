@@ -4,11 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import JMMP.TransRoute.Model.Encargo;
 import JMMP.TransRoute.Model.Ruta;
 import JMMP.TransRoute.Repository.EncargoRepository;
-
+import lombok.extern.slf4j.Slf4j;
+@Service
+@Slf4j
 public class EncargoService {
 	@Autowired
     private EncargoRepository encargoRepository;
