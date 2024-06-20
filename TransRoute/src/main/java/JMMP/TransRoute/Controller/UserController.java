@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -58,7 +60,7 @@ public class UserController {
 	@Value("${jwtExpiration}")
 	private long expiration;
 
-
+	@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping("/")
 	public List<User> getAllUsers() {
 		List<User> allUsers = userService.getAll();
@@ -84,12 +86,13 @@ public class UserController {
 	 * @param sucursalId
 	 * @return
 	 */
+	@CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping("/add")
 	public Object addUser(@RequestBody User user, @RequestParam(required = false) Double altura,
-			@RequestParam(required = false) Double mma, @RequestParam(required = false) Double longitud,
-			@RequestParam(required = false) String sucursalId) {
+			@RequestParam(required = false) Double mma, @RequestParam(required = false) Double longitud,@RequestParam(required = false) String matricula,
+			@RequestParam(required = false) String sucursalId,@RequestParam(required = false) String gerenteId) {
 		// Comprobar que existe algún tipo de usuario con ese email
-		if (!(userService.existsByEmail(user.getEmail()) || adminService.existsByEmail(user.getEmail())
+		if ((userService.existsByEmail(user.getEmail()) || adminService.existsByEmail(user.getEmail())
 				|| gerenteService.existsByEmail(user.getEmail())
 				|| transportistaService.existsByEmail(user.getEmail()))) {
 			return null;
@@ -115,11 +118,12 @@ public class UserController {
 			gerente.setEmail(user.getEmail());
 			gerente.setPassword(user.getPassword());
 			if (sucursalId != null) {
+
 				gerente.setSucursalId(sucursalService.getSucursalById(sucursalId));
 			} else {
 				gerente.setSucursalId(null);
 			}
-
+			return gerenteService.addGerente(gerente);
 		case "transportista":
 			Transportista transportista = new Transportista();
 			transportista.setName(user.getName());
@@ -137,14 +141,26 @@ public class UserController {
 			if (longitud != null) {
 				transportista.setMma(longitud);
 			}
-
+			if (matricula != null) {
+				transportista.setMatricula(matricula);
+			}
+			if (sucursalId != null) {
+				transportista.setSucursalId(sucursalService.getSucursalById(sucursalId));
+			} else {
+				transportista.setSucursalId(null);
+			}
+			if (gerenteId != null) {
+				transportista.setGerenteId(gerenteService.getGerenteById(gerenteId));
+			} else {
+				transportista.setSucursalId(null);
+			}
 			return transportistaService.addTransportista(transportista);
 		default:
 			return userService.addUser(user);
 		}
 
 	}
-
+	@CrossOrigin(origins = "http://localhost:3000")
 	@PatchMapping("/{userId}")
 	public Object modifyUser(@PathVariable String userId, @RequestBody User user,
 			@RequestParam(required = false) Double altura, @RequestParam(required = false) Double mma,
@@ -290,7 +306,7 @@ public class UserController {
 		}
 
 	}
-
+	@CrossOrigin(origins = "http://localhost:3000")
 	@DeleteMapping("/{userId}")
 	public void deleteUser(@PathVariable String userId) {
 		String actualRole = "user";
@@ -321,12 +337,17 @@ public class UserController {
 			userService.deleteUserById(userId);
 		}
 	}
-	
+	@CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping("/login")
 	public ResponseEntity<User> login(@RequestBody LoginRequest request) {
-
-		
-		User user2 = userService.getUserByName(request.getUsername()).get(0);
+		User user2 = null;
+		List<User> users = userService.getUserByEmail(request.getEmail());
+		if(!CollectionUtils.isEmpty(users)) {
+			 user2 = userService.getUserByEmail(request.getEmail()).get(0);
+		}else {
+			
+		}
+			
 		
 		if(user2 == null) {
 			return ResponseEntity
@@ -344,7 +365,7 @@ public class UserController {
 		
 		return ResponseEntity
 				.status(HttpStatus.UNAUTHORIZED)
-				.build();
+				.body(null);
 
 	}
 	

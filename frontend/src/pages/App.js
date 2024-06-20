@@ -7,8 +7,8 @@ import Box from '@mui/material/Box';
 import { Button, Checkbox, Input } from '@mui/material';
 
 
-import Login from '../components/Login';
-import Register from '../components/Register';
+import Login from '../components/Users/Login';
+import Register from '../components/Users/Register';
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;

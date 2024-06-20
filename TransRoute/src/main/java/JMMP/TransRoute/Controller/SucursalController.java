@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -25,7 +26,7 @@ public class SucursalController {
 
 	@Autowired
 	private SucursalService sucursalService;
-	
+	@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping("/")
 	public List<Sucursal> getAllSucursales(){
 		List<Sucursal> allUsers = sucursalService.getAll();
@@ -37,17 +38,27 @@ public class SucursalController {
 		return allUsers;
 		
 	}
-	
+	@CrossOrigin(origins = "http://localhost:3000")
+	@GetMapping("/{sucursalId}")
+	public Sucursal getSucursalById(@PathVariable String sucursalId){
+
+
+
+
+		return sucursalService.getSucursalById(sucursalId);
+		
+	}
+	@CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping("/add")
 	public Sucursal addSucursal(@RequestBody Sucursal sucursal) {
-		if (!sucursalService.existsByDireccion(sucursal.getDireccion())) {
+		if (sucursalService.existsByDireccion(sucursal.getDireccion())) {
 			return null;
 		}
 		
 		return sucursalService.addSucursal(sucursal);
 		
 	}
-	
+	@CrossOrigin(origins = "http://localhost:3000")
 	@PatchMapping("/{sucursalId}")
 	public Sucursal modifySucursal(@RequestBody Sucursal sucursal, @PathVariable String sucursalId) {
 		if (!sucursalService.existsByDireccion(sucursal.getDireccion())) {
@@ -65,7 +76,7 @@ public class SucursalController {
 		return sucursalService.updateSucursal(sucursal2);
 		
 	}
-	
+	@CrossOrigin(origins = "http://localhost:3000")
 	@DeleteMapping("/{sucursalId}")
 	public void deleteSucursal(@PathVariable String sucursalId) {
 		if (!sucursalService.existsById(sucursalId)) {

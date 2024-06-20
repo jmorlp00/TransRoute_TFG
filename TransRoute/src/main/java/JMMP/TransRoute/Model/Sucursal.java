@@ -4,7 +4,7 @@ import org.springframework.data.annotation.Id;
 
 public class Sucursal {
 	@Id
-	private String Id;
+	private String id;
 	
 	private String direccion;
 	
@@ -15,11 +15,11 @@ public class Sucursal {
 	private String correo;
 
 	public String getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(String id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public String getDireccion() {

@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -23,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 public class RutaController {
     @Autowired
     private RutaService rutaService;
-
+	@CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/")
     public List<Ruta> getAllRutas() {
         List<Ruta> allRutas = rutaService.getAll();
@@ -33,7 +34,7 @@ public class RutaController {
 
         return allRutas;
     }
-
+	@CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/add")
     public Ruta addRuta(@RequestBody Ruta ruta) {
         if (ruta.getCoordenadas() == null || ruta.getCoordenadas().length < 2) {
@@ -41,7 +42,7 @@ public class RutaController {
         }
         return rutaService.addRuta(ruta);
     }
-
+	@CrossOrigin(origins = "http://localhost:3000")
     @PatchMapping("/{rutaId}")
     public Ruta modifyRuta(@RequestBody Ruta ruta, @PathVariable String rutaId) {
         if (ruta.getCoordenadas() == null || ruta.getCoordenadas().length < 2) {
@@ -50,7 +51,7 @@ public class RutaController {
         ruta.setId(rutaId); // Establecer el ID de la ruta
         return rutaService.updateRuta(ruta);
     }
-
+	@CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("/{rutaId}")
     public void deleteRuta(@PathVariable String rutaId) {
         rutaService.deleteRutaById(rutaId);

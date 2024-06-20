@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 
 public class Encargo {
 	@Id
-	private String Id;
+	private String id;
 	
 	@DBRef
 	private Transportista transportistaId;
@@ -20,11 +20,11 @@ public class Encargo {
 	private Date fechaEntrega;
 
 	public String getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(String id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public Transportista getTransportista() {

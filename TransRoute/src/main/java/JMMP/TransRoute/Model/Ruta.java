@@ -4,7 +4,7 @@ import org.springframework.data.annotation.Id;
 
 public class Ruta {
 	@Id
-	private String Id;
+	private String id;
 	
 	private String nombre;
 	
@@ -17,11 +17,11 @@ public class Ruta {
     private Coordenada[] coordenadas;
 
 	public String getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(String id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public String getNombre() {

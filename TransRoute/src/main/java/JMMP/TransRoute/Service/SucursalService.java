@@ -20,9 +20,9 @@ public class SucursalService {
 	@Autowired
 	SucursalRepository sucursalRepository;
 	public Sucursal getSucursalById(String id) {
-		
+
 		Optional<Sucursal> optionalSucursal = sucursalRepository.findById(id);
-		
+
 		if(optionalSucursal == null || optionalSucursal.get() == null) {
 			return null;
 		}

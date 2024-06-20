@@ -27,8 +27,8 @@ public class RutaService {
         return rutaList;
     }
     
-    public Optional<Ruta> findById(String id) {
-        return rutaRepository.findById(id);
+    public Ruta findById(String id) {
+        return rutaRepository.findById(id).get();
     }
     
     public boolean existsByNombre(String nombre) {

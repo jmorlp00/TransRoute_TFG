@@ -1,6 +1,7 @@
 package JMMP.TransRoute.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,7 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
     
-    // Endpoint para crear un nuevo administrador
+	@CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/save")
     public Admin createAdmin(@RequestBody Admin admin) {
         return adminService.addAdmin(admin);

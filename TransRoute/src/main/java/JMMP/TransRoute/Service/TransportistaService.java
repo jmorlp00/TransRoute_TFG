@@ -70,4 +70,7 @@ public class TransportistaService {
 		}
 		return true;
 	}
+	public List<Transportista> getTransportistaBySucursal(String sucursalId){
+		return transportistaRepository.findBySucursalId_Id(sucursalId);
+	}
 }

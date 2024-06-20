@@ -52,6 +52,7 @@
     "react-bootstrap": "^2.10.2",
     "react-dev-utils": "^12.0.1",
     "react-dom": "^18.3.1",
+    "react-error-overlay": "^6.0.11",
     "react-material-ui-carousel": "^3.4.2",
     "react-multi-carousel": "^2.8.5",
     "react-player": "^2.16.0",
@@ -64,6 +65,7 @@
     "resolve-url-loader": "^4.0.0",
     "sass-loader": "^12.3.0",
     "semver": "^7.3.5",
+    "serve": "^14.0.1",
     "slick-carousel": "^1.8.1",
     "source-map-loader": "^3.0.0",
     "style-loader": "^3.3.1",
@@ -148,5 +150,8 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "devDependencies": {
+    "webpack-cli": "^5.1.4"
   }
 }
