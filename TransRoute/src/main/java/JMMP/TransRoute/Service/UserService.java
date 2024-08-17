@@ -24,12 +24,13 @@ public class UserService {
 		
 		Optional<User> optionalUser = userRepository.findById(id);
 		
-		if(optionalUser == null || optionalUser.get() == null) {
-			return null;
-		}
-		
-		User user = optionalUser.get();
-		return user;
+	    if (optionalUser.isPresent()) {
+	        // Retornar el usuario si está presente
+	        return optionalUser.get();
+	    } else {
+	        // Retornar null si el usuario no se encuentra
+	        return null;
+	    }
 	}
 	
 	public List<User> getUserByName(String name) {
@@ -78,10 +79,7 @@ public class UserService {
 	}
 	
 	public Boolean existsById(String id) {
-		Optional<User> optionalUser = userRepository.findById(id);
-		if(optionalUser == null || optionalUser.get() == null) {
-			return false;
-		}
-		return true;
+	    return userRepository.findById(id).isPresent();
 	}
+
 }

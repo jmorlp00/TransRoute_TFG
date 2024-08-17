@@ -127,6 +127,7 @@ public class UserController {
 			transportista.setAge(user.getAge());
 			transportista.setRole(user.getRole());
 			transportista.setEmail(user.getEmail());
+			transportista.setPassword(user.getPassword());
 			// Setear campos específicos de Transportista desde el RequestBody
 			if (altura != null) {
 				transportista.setAltura(altura);
@@ -135,7 +136,7 @@ public class UserController {
 				transportista.setMma(mma);
 			}
 			if (longitud != null) {
-				transportista.setMma(longitud);
+				transportista.setLongitud(longitud);
 			}
 
 			return transportistaService.addTransportista(transportista);
@@ -156,23 +157,27 @@ public class UserController {
 		if (userService.getUserById(userId) != null) {
 			if (user.getRole() != "") {
 				changeRole = true;
+				actualRole = "";
 			}
 		} else if (adminService.getAdminByAdminId(userId) != null) {
 			if (user.getRole() != "admin") {
 				changeRole = true;
+				actualRole = "admin";
 			}
 		} else if (gerenteService.getGerenteById(userId) != null) {
 			if (user.getRole() != "gerente") {
 				changeRole = true;
+				actualRole = "gerente";
 			}
 		} else if (transportistaService.getTransportistaById(userId) != null) {
 			if (user.getRole() != "transportista") {
 				changeRole = true;
+				actualRole = "transportista";
 			}
 		} else {
 			return "Error";
 		}
-
+		System.out.println("/"+user.getRole()+"/");
 		if (changeRole) {
 			switch (actualRole) {
 			case "admin":

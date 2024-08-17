@@ -33,12 +33,12 @@ public class GerenteService {
 		
 		Optional<Gerente> optionalGerente = gerenteRepository.findById(id);
 		
-		if(optionalGerente == null || optionalGerente.get() == null) {
-			return null;
-		}
-		
-		Gerente gerente = optionalGerente.get();
-		return gerente;
+	    if (optionalGerente.isPresent()) {
+	        return optionalGerente.get();
+	    } else {
+	        // Manejar el caso en que el Gerente no esté presente
+	        return null; // O lanzar una excepción personalizada si lo prefieres
+	    }
 	}
 	
 	public Gerente addGerente(Gerente gerente) {
@@ -63,10 +63,6 @@ public class GerenteService {
 		return gerenteRepository.save(gerente);
 	}
 	public Boolean existsById(String id) {
-		Optional<Gerente> optionalUser = gerenteRepository.findById(id);
-		if(optionalUser == null || optionalUser.get() == null) {
-			return false;
-		}
-		return true;
+		return gerenteRepository.findById(id).isPresent();
 	}
 }

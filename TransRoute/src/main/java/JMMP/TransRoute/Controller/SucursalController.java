@@ -55,7 +55,7 @@ public class SucursalController {
 		}
 		
 		Sucursal sucursal2 = new Sucursal();
-		
+		System.out.println(sucursal.getDireccion());
 		sucursal2.setId(sucursalId);
 		sucursal2.setNombre(sucursal.getNombre());
 		sucursal2.setTelefono(sucursal.getTelefono());

@@ -34,12 +34,12 @@ public class TransportistaService {
 		
 		Optional<Transportista> optionalTransportista = transportistaRepository.findById(id);
 		
-		if(optionalTransportista == null || optionalTransportista.get() == null) {
-			return null;
-		}
-		
-		Transportista transportista = optionalTransportista.get();
-		return transportista;
+		if (optionalTransportista.isPresent()) {
+	        return optionalTransportista.get();
+	    } else {
+	        // Manejar el caso en que el Transportista no esté presente
+	        return null; // O lanzar una excepción personalizada si lo prefieres
+	    }
 	}
 	
 	public Transportista addTransportista(Transportista transportista) {
@@ -64,10 +64,6 @@ public class TransportistaService {
 		return transportistaRepository.save(transportista);
 	}
 	public Boolean existsById(String id) {
-		Optional<Transportista> optionalUser = transportistaRepository.findById(id);
-		if(optionalUser == null || optionalUser.get() == null) {
-			return false;
-		}
-		return true;
+		return transportistaRepository.findById(id).isPresent();
 	}
 }

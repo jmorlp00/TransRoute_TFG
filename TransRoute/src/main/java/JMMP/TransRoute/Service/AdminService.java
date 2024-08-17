@@ -36,12 +36,12 @@ public class AdminService {
 		
 		Optional<Admin> optionalAdmin = adminRespository.findById(id);
 		
-		if(optionalAdmin == null || optionalAdmin.get() == null) {
-			return null;
-		}
-		
-		Admin admin = optionalAdmin.get();
-		return admin;
+	    if (optionalAdmin.isPresent()) {
+	        return optionalAdmin.get();
+	    } else {
+	        // Manejar el caso en que el Admin no esté presente
+	        return null; // O lanzar una excepción personalizada si lo prefieres
+	    }
 	}
 	
 
@@ -69,10 +69,7 @@ public class AdminService {
 		return adminRespository.save(admin);
 	}
 	public Boolean existsById(String id) {
-		Optional<Admin> optionalUser = adminRespository.findById(id);
-		if(optionalUser == null || optionalUser.get() == null) {
-			return false;
-		}
-		return true;
+		
+		 return adminRespository.findById(id).isPresent();
 	}
 }
